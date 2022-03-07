@@ -9,6 +9,7 @@ import pro.sky.coursetwo.interfaces.EmployeeService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -58,6 +59,16 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public List<Employee> printListOfEmployee() {
         return employees;
+    }
+
+    @Override
+    public Map<String, Employee> printAllEmployee() {
+        return null;
+    }
+
+    @Override
+    public Employee findEmployee2(String lastName, String firstName) {
+        return null;
     }
 }
 
