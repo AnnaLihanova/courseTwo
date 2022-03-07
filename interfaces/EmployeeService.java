@@ -3,6 +3,7 @@ package pro.sky.coursetwo.interfaces;
 import pro.sky.coursetwo.data.Employee;
 
 import java.util.List;
+import java.util.Map;
 
 public interface EmployeeService {
 
@@ -12,5 +13,9 @@ public interface EmployeeService {
 
     public boolean findEmployee(String lastName, String firstName);
 
+    public Employee findEmployee2(String lastName, String firstName);
+
     public List<Employee> printListOfEmployee();
+
+    public Map<String, Employee> printAllEmployee();
 }
