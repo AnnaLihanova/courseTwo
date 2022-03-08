@@ -36,13 +36,12 @@ public class EmployeeServiceMapImpl implements EmployeeService {
     @Override
     public Employee removeEmployee(String lastName, String firstName) {
         String key = getKey(lastName, firstName);
-        if (employeesMap.remove(key) != null) {
-            employeesMap.remove(key);
-            return null;
-        } else {
+        if (employeesMap.remove(key) == null) {
             throw new EmployeeNotFoundException("Employee not found");
         }
-    }
+        Employee removedEmployee = new Employee(lastName, firstName);
+        return removedEmployee;
+            }
 
     @Override
     public Employee findEmployee2(String lastName, String firstName) {
