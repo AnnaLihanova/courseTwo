@@ -13,17 +13,11 @@ import java.util.Map;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    List<Employee> employees = new ArrayList<>(List.of(
-            new Employee("Ivanov", "Ivan"),
-            new Employee("Шариков", "Роман"),
-            new Employee("Дудник", "Петр"),
-            new Employee("Кромкина", "Мария"),
-            new Employee("Тарасова", "Татьяна")
-    ));
+    List<Employee> employees = new ArrayList<>();
 
     @Override
-    public Employee addEmployee(String lastName, String firstName) {
-        Employee newEmployee = new Employee(lastName, firstName);
+    public Employee addEmployee(String lastName, String firstName, int department, int salary) {
+        Employee newEmployee = new Employee(lastName, firstName, department, salary);
         for (int i = 0; i < employees.size(); i++) {
             if (employees.contains(newEmployee)) {
                 throw new EmployeeAlreadyAddedException("Employee already added");
@@ -34,8 +28,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee removeEmployee(String lastName, String firstName) {
-        Employee removeEmployee = new Employee(lastName, firstName);
+    public Employee removeEmployee(String lastName, String firstName, int department, int salary) {
+        Employee removeEmployee = new Employee(lastName, firstName, department, salary);
         for (int i = 0; i < employees.size(); i++) {
             if (employees.contains(removeEmployee)) {
                 employees.remove(removeEmployee);
@@ -46,8 +40,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public boolean findEmployee(String lastName, String firstName) {
-        Employee findEmployee = new Employee(lastName, firstName);
+    public boolean findEmployee(String lastName, String firstName, int department, int salary) {
+        Employee findEmployee = new Employee(lastName, firstName, department, salary);
         for (int i = 0; i < employees.size(); i++) {
             if (employees.contains(findEmployee)) {
                 return true;
