@@ -5,11 +5,15 @@ import org.springframework.stereotype.Service;
 import pro.sky.coursetwo.data.Employee;
 import pro.sky.coursetwo.exceptions.EmployeeAlreadyAddedException;
 import pro.sky.coursetwo.exceptions.EmployeeNotFoundException;
+import pro.sky.coursetwo.exceptions.InvalidNameException;
 import pro.sky.coursetwo.interfaces.EmployeeService;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static org.apache.commons.lang3.StringUtils.capitalize;
+import static org.apache.commons.lang3.StringUtils.isAlpha;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -17,7 +21,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee addEmployee(String lastName, String firstName, int department, int salary) {
-        Employee newEmployee = new Employee(lastName, firstName, department, salary);
+        validateName(firstName, lastName);
+        Employee newEmployee = new Employee(capitalize(lastName), capitalize(firstName), department, salary);
         for (int i = 0; i < employees.size(); i++) {
             if (employees.contains(newEmployee)) {
                 throw new EmployeeAlreadyAddedException("Employee already added");
@@ -25,6 +30,14 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         employees.add(newEmployee);
         return newEmployee;
+    }
+
+    private void validateName(String... names) {
+        for (String name : names) {
+            if (!isAlpha(name)) {
+                throw new InvalidNameException(name);
+            }
+        }
     }
 
     @Override
