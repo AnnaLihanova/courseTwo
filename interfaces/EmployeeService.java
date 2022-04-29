@@ -11,7 +11,7 @@ public interface EmployeeService {
 
     public Employee removeEmployee(String lastName, String firstName, int department, int salary);
 
-    public boolean findEmployee(String lastName, String firstName, int department, int salary);
+    public Employee findEmployee(String lastName, String firstName, int department, int salary);
 
     public Employee findEmployee2(String lastName, String firstName);
 
