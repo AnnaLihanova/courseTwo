@@ -32,7 +32,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         return newEmployee;
     }
 
-    private void validateName(String... names) {
+    public void validateName(String... names) {
         for (String name : names) {
             if (!isAlpha(name)) {
                 throw new InvalidNameException(name);
@@ -53,11 +53,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public boolean findEmployee(String lastName, String firstName, int department, int salary) {
+    public Employee findEmployee(String lastName, String firstName, int department, int salary) {
         Employee findEmployee = new Employee(lastName, firstName, department, salary);
         for (int i = 0; i < employees.size(); i++) {
             if (employees.contains(findEmployee)) {
-                return true;
+                return findEmployee;
             }
         }
         throw new EmployeeNotFoundException("Employee not found");
